@@ -1,0 +1,40 @@
+.custom-audio-player {
+    display: flex;
+    padding: 10px;
+    flex-wrap: wrap;  /* 允许子元素换行 */
+    background-color: rgba(255, 255, 255, 0);
+}
+
+#audio-progress-bar {
+    width: 100%;
+    margin: 10px 0;
+}
+
+#audio-pause-btn {
+    display: inline-flex;   
+}
+
+#audio-previous-btn {
+    display: inline-flex;   
+    
+}
+
+#audio-next-btn {
+    display: inline-flex;   
+    
+}
+
+#next-prev-buttons-layout{
+    display: flex;
+    flex-wrap: wrap;  /* 允许子元素换行 */
+    
+    gap: 10px; /* 两个按钮的间距 */
+}
+
+
+
+#audio-time-display {
+    
+    margin-left: 10px;
+    color: #ccc;
+}

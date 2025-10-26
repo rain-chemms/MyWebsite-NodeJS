@@ -1,0 +1,26 @@
+{
+    "name": "webvisitors",
+    "version": "1.0.0",
+    "description": "Remake with the backend NodeJS",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node server.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "MIT",
+    "dependencies": {
+        "express": "^5.1.0",
+        "exxpress": "^1.0.0"
+    },
+    "devDependencies": {},
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/rain-chemms/MyWebsite-NodeJS.git"
+    },
+    "bugs": {
+        "url": "https://github.com/rain-chemms/MyWebsite-NodeJS/issues"
+    },
+    "homepage": "https://github.com/rain-chemms/MyWebsite-NodeJS#readme"
+}

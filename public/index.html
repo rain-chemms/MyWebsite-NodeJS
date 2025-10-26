@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G&P/我的个人主页</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="CSS/Styles.css">
+    <link rel="stylesheet" href="CSS/AudioPlayer.css">
+    <link rel="stylesheet" href="CSS/MouseTrail.css">
+    <link rel="stylesheet" href="CSS/SearchBar.css">
+    <link rel="stylesheet" href="CSS/3DEarthContainer.css">
+    <link rel="icon" href="Source/Images/Logo_Small.jpeg" type="image/x-icon" size="">
+</head>
+
+<body onload="draw()">
+    <!-- 自定义光标 -->
+    <div class="custom-cursor" id="customCursor"></div>
+    <!-- 点击特效容器 -->
+    <div class="click-effects-container" id="clickEffects"></div>
+
+
+    <div id="container"></div>
+    <div class="main-container">
+        <!-- 侧边栏 -->
+        <div class="sidebar">
+            <!-- Logo -->
+            <div class="logo-container">
+                <div class="logo">GP</div>
+                <div class="logo-text">G&P By Self</div>
+            </div>
+
+            <!-- 搜索窗口 -->
+            <div style="color:rgb(152, 48, 249);width:100%;display:flex;justify-content: center;">搜点啥?</div>
+            <div id="serach-container">
+                <input type="text" id="search-bar" placeholder="搜索当前页(不区分大小写)">
+                <button id="search-btn" onclick="">搜索</button>
+            </div>
+
+            <!-- 导航菜单 -->
+            <div class="nav-links">
+                <a href="#" class="nav-item active" data-target="introduction">
+                    <i class="fas fa-home"></i>
+                    <span class="nav-text">简介</span>
+                    <div class="tooltip">简介</div>
+                </a>
+                <a href="#" class="nav-item" data-target="gamesCatalogue">
+                    <i class="fas fa-chart-line"></i>
+                    <span class="nav-text">游戏目录</span>
+                    <div class="tooltip">游戏目录</div>
+                </a>
+
+                <a href="#" class="nav-item" data-target="code&programCatalogue">
+                    <i class="fas fa-code"></i>
+                    <span class="nav-text">程序目录</span>
+                    <div class="tooltip">程序目录</div>
+                </a>
+
+                <a href="#" class="nav-item" data-target="settings">
+                    <i class="fas fa-cog"></i>
+                    <span class="nav-text">设置</span>
+                    <div class="tooltip">设置</div>
+                </a>
+                <a href="#" class="nav-item" data-target="profile">
+                    <i class="fas fa-user"></i>
+                    <span class="nav-text">网站信息</span>
+                    <div class="tooltip">网站信息</div>
+                </a>
+            </div>
+
+            <!-- 切换按钮 -->
+            <button class="toggle-btn" onclick="toggleSidebar()">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </div>
+
+        <!-- 主内容区域 -->
+        <div class="content-area">
+            <!-- 星空背景 -->
+            <div class="stars" id="stars"></div>
+
+            <!-- 内容容器（带滚动条） -->
+            <div class="content-container">
+                <!-- 介绍页面 -->
+                <div class="page active" id="introduction">
+                    <h1 class="breadcrumb">站点简介</h1>
+                    <div class="long-content">
+                        <div class="stat-label">欢迎你来到我的个人网站, 这里主要存放了我个人开发的游戏 和 开源程序</div>
+                        <div class="stat-label">大部分的游戏资源可以通过网盘下载, 开源程序可以从GitHub上获取源代码</div>
+                        <div class="stat-label">当前网站还在建设当中, 你如果有想对这个站点提些建议,可以在作者信息页面获取联系方式,你给出的建议我会仔细看的(前提是我有时间)</div>
+                    </div>
+                    <div class="dashboard-stats">
+                        <div class="stat-card">
+                            <div class="stat-value">1</div>
+                            <div class="stat-label">目前游戏数量</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">0</div>
+                            <div class="stat-label">目前程序数量</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="visits-number-label"></div>
+                        <div class="stat-label">今日访问量</div>
+                    </div>
+
+                    <div class="content-section">
+                        <h2 class="section-title">概览</h2>
+                        <div class="dashboard-stats">
+                            <div class="stat-card">
+                                <div class="stat-label">游戏项目列表:</div>
+                                <div class="long-content" style="color: #a36aff;">
+                                    Chess3D [BY] 于乐先生
+                                </div>
+
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-label">程序项目列表:</div>
+                                <div class="long-content">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h2 class="section-title">近期计划</h2>
+                        <div class="long-content">
+                            <div class="stat-label">对于我而言,想利用这个搭建网站的机会整理一下我过去的代码和项目</div>
+                            <div class="stat-label">这个网站搭建的目的也是为了更多人可以游玩很个人开发的作品,并介绍和传播它们</div>
+                            <div class="stat-label">你要是想要在这个网站上介绍自己的作品,不用客气,联系作者就行(都是免费的)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 游戏目录页面 -->
+                <div class="page" id="gamesCatalogue">
+                    <h1 class="breadcrumb">游戏目录</h1>
+                    <div class="long-content">
+                        <p class="stat-label">
+                            这个页面是关于游戏的,这个目录下的有些游戏可以通过网址链接访问下载,如果你对游戏做了网页端的适配,我很支持你把网页端的游戏demo使用链接放上来,毕竟直接能玩去体验一下也不错
+                        </p>
+                    </div>
+                    <hr>
+                    <div class="chart-container">
+                        <div class="breadcrumb" id="CHESS3D">Chess3D</div>
+                        <div class="long-content">
+                            <p class="stat-label">
+                                演示视频:
+                            </p>
+                            <video src="./Source/Video/Chess3D游戏演示.mp4" width="640" height="360" controls></video>
+                        </div>
+                        <div class="long-content">
+                            <h1 class="stat-label">
+                                游戏介绍:
+                            </h1>
+                            <p class="stat-label">就是很普通的国际象棋游戏,遵守国际象棋的规则</p>
+                            <p class="stat-label">使用WASD控制摄像机的移动,鼠标左键移动视角,按下R键重置棋子位置,按下鼠标中键使摄像机正视棋盘</p>
+                            <p class="stat-label">这个项目还有很多不完善的地方,我以后有可能会维护它(自己写的S山自己吃,没绷住)</p>
+                            <p class="stat-label">这个游戏是我在2025年暑期开发的,当时是为了学习Unity引擎和C#语言</p>
+                            <p class="stat-label">这次想要做一个网站去分享点什么,就拿他开涮了</p>
+                            <p class="stat-label">所以对这个游戏或是网站有什么建议或是想法可以从网站信息获取邮箱发送电子邮件给我,相信我,会看的(前提是有时间)</p>
+                            <p class="stat-label">这也是这个网站的第一个游戏项目,也算本站的镇站之宝了</p>
+                        </div>
+                        <div class="long-content">
+                            <h1 class="stat-label">
+                                游戏信息/源码/下载:
+                            </h1>
+                            <p class="stat-label">项目源代码:</p><a href="https://github.com/rain-chemms/Chess3D"
+                                target="_blank">https://github.com/rain-chemms/Chess3D</a>
+                            <p class="stat-label">游戏下载:</p>
+                            <p class="stat-label">Android/Windows/WebGL:</p><a
+                                href="https://github.com/rain-chemms/Chess3D/releases/tag/Release-v1.0"
+                                target="_blank">https://github.com/rain-chemms/Chess3D/releases/tag/Release-v1.0</a>
+                            <p class="stat-label">你说你想要现在就玩?那就点下面开始吧!</p><a
+                                href="https://rain-chemms.github.io/Chess3D-Web/" target="_blank">在线实时游玩该项目(WebGL项目)</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 程序目录页面 -->
+                <div class="page" id="code&programCatalogue">
+                    <h1 class="breadcrumb">程序目录</h1>
+                    <div class="long-content">
+                        <p class="stat-label">这个页面是关于一些开源项目的,主要给出它们在GitHub的链接和一些简介,简介能帮助你了解项目,估计随着网页发展,这些项目大概率也是和游戏有关的
+                        </p>
+                    </div>
+                    <hr>
+                </div>
+
+                <!-- 系统设置页面 -->
+                <div class="page" id="settings">
+                    <h1 class="breadcrumb">系统设置</h1>
+                    <div class="long-content">
+                        <p class="stat-label">配置系统偏好设置和网页个性化选项。</p>
+                    </div>
+                    <p class="stat-label">你说你想听会音乐?</p>
+                    <p class="stat-label">好吧,这下面的是一个音乐播放器</p>
+                    <p class="stat-label">不用想,没几首歌</p>
+                    <div class="long-content">
+
+                        <h1 class="stat-label">音乐播放器</h1>
+                        <p class="stat-label" id="music-name-label">正在播放:</p>
+                        <div class="custom-audio-player">
+
+                            <audio id="back-audio" src="./Source/Audio/诀别书.mp3"></audio>
+                            <input type="range" id="audio-progress-bar" min="0" max="100" value="0">
+                            <span id="audio-time-display">0:00 / 0:00</span>
+
+                            <div id="next-prev-buttons-layout">
+                                <button class="cta-button" id="audio-pause-btn">播放</button>
+                                <button class="cta-button" id="audio-next-btn">下一首</button>
+                                <button class="cta-button" id="audio-previous-btn">上一首</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <button class="cta-button" onclick="addRandomStar()">添加随机星星</button>
+                </div>
+
+                <!-- 个人资料页面 -->
+                <div class="page" id="profile">
+                    <h1 class="breadcrumb">作者信息</h1>
+                    <div class="chart-container">
+                        <h3>基本信息(网站作者)</h3>
+                        <div class="long-content">
+                            <p class="stat-label">作者昵称: 于乐先生(John Rain / Sleeply Cat)</p>
+                            <p class="stat-label">邮箱: 2440623951@qq.com</p>
+                            <p class="stat-label">GitHub: <a href="https://github.com/rain-chemms"
+                                    target="_blank">https://github.com/rain-chemms</a></p>
+                            <hr>
+                            <h1 id="logo-text-creater">LOGO</h1>
+                            <img src="./Source/Images/Logo.jpeg" alt="作者头像" width="100%">
+                            <hr>
+                        </div>
+                        <h3>作品列表</h3>
+                        <div class="long-content">
+                            <p>Chess3D</p>
+                            <p>类别:游戏</p>
+                            <p>作者信息:于乐先生(John Rain)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="./JS/MouseTrail.js"></script>
+        <script src="./JS/Controler.js"></script>
+        <script src="./JS/AudioControler.js"></script>
+        <script src="./JS/SearchBar.js"></script>
+        <script src="./app.js"></script>
+</body>
+
+<!--3D模型加载-->
+<script src="libs/three.js"></script>
+<script src="libs/OrbitControls.js"></script>
+<script src="libs/WebViewModel.js"></script>
+<script type="text/javascript">
+    //单个模型加载
+    var model_url;
+    if (!window.localStorage) {
+        // alert('no support localStorage');
+    } else {
+        model_url = 'models/gltf/earth/earth.gltf';
+        var storage = window.localStorage;
+        storage["url"] = model_url;
+    }
+
+    let haveRotate = 0.0
+    let pageTodown = false
+    let maxScaleX = 15
+    let maxScaleY = 15
+    let maxScaleZ = 15
+
+    let rotateSpeed = 0.0075
+    let scaleSpeed = 0.025
+    //单个模型旋转
+    function rotateAnimate() {
+        requestAnimationFrame(rotateAnimate);
+        // 旋转模型
+        // 如果模型已加载
+        if (modelShow) {
+            // 绕Y轴旋转，数值越大转速越快
+            modelShow.rotation.y += rotateSpeed;
+            haveRotate += rotateSpeed
+            //设置模型缩放
+            modelShow.scale.x += scaleSpeed
+            modelShow.scale.y += scaleSpeed
+            modelShow.scale.z += scaleSpeed
+            if (modelShow.scale.x > maxScaleX) {
+                modelShow.scale.x = maxScaleX
+            }
+            if (modelShow.scale.y > maxScaleY) {
+                modelShow.scale.y = maxScaleY
+            }
+            if (modelShow.scale.z > maxScaleZ) {
+                modelShow.scale.z = maxScaleZ
+            }
+        }
+        //控制页面下滑
+        if (!pageTodown && haveRotate > Math.PI * 2) {
+            pageTodown = true
+            window.scrollTo({
+                top: document.documentElement.scrollHeight, // 或 scrollHeight - innerHeight
+                behavior: 'smooth' // 'auto'（默认，瞬间滚动）或 'smooth'（平滑）
+            });
+        }
+
+        controls.update();
+        renderer.render(scene, camera);
+    }
+    // 启动动画
+    rotateAnimate();
+</script>
+</html>

@@ -6,9 +6,13 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // --------------------------
+// 静态资源托管（前端文件）
+// --------------------------
+app.use(express.static(path.join(__dirname, 'public')));
+// --------------------------
 // 核心：记录访客信息（所有路由触发）
 // --------------------------
-app.use(async (req, res, next) => {
+app.use('/api/visits',async (req, res, next) => {
   try {
     await ensureVisitsDirectoryExists(); // 确保目录存在
     const filePath = getCurrentDayVisitFilePath();
@@ -43,10 +47,7 @@ app.use(async (req, res, next) => {
     next(); // 继续执行后续中间件/路由
   }
 });
-// --------------------------
-// 静态资源托管（前端文件）
-// --------------------------
-app.use(express.static(path.join(__dirname, 'public')));
+
 // --------------------------
 // 工具函数：日期与文件路径
 // --------------------------
